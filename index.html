@@ -10,6 +10,29 @@
     <title>Document</title>
 </head>
 <body>
+    <!-- FORM -->
+    <div class="center">
+        <button id="show-form">Submit score</button>
+        <h1 class="score"></h1>
+    </div>
+    <div class="popup">
+        <div class="close-btn">&times;</div>
+        <div class="form">
+            <h2>Submit score</h2>
+            <form action="https://formspree.io/f/mdoydnjz"
+            method="POST" target="_blank">
+                <div class="form-element">
+                    <label for="email">Your e-mail</label>
+                    <input id="email" type="email" name="_replyto" placeholder="example@email.com">
+                </div>
+                <textarea id="message" name="message" hidden></textarea>
+                <div class="form-element">
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <canvas id="game-canvas" width="640" height="640"></canvas>
 </body>
 <script src="index.js"></script>

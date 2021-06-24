@@ -87,7 +87,7 @@
   var IS_CHROME = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
   var CANVAS_WIDTH = 640;
   var CANVAS_HEIGHT = 640;
-  var SPRITE_SHEET_SRC = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAEACAYAAAADRnAGAAACGUlEQVR42u3aSQ7CMBAEQIsn8P+/hiviAAK8zFIt5QbELiTHmfEYE3L9mZE9AAAAqAVwBQ8AAAD6THY5CgAAAKbfbPX3AQAAYBEEAADAuZrC6UUyfMEEAIBiAN8OePXnAQAAsLcmmKFPAQAAgHMbm+gbr3Sdo/LtcAAAANR6GywPAgBAM4D2JXAAABoBzBjA7AmlOx8AAEAzAOcDAADovTc4vQim6wUCABAYQG8QAADd4dPd2fRVYQAAANQG0B4HAABAawDnAwAA6AXgfAAAALpA2uMAAABwPgAAgPoAM9Ci/R4AAAD2dmqcEQIAIC/AiQGuAAYAAECcRS/a/cJXkUf2AAAAoBaA3iAAALrD+gIAAADY9baX/nwAAADNADwFAADo9YK0e5FMX/UFACA5QPSNEAAAAHKtCekmDAAAAADvBljtfgAAAGgMMGOrunvCy2uCAAAACFU6BwAAwF6AGQPa/XsAAADYB+B8AAAAtU+ItD4OAwAAAFVhAACaA0T7B44/BQAAANALwGMQAAAAADYO8If2+P31AgAAQN0SWbhFDwCAZlXgaO1xAAAA1FngnA8AACAeQPSNEAAAAM4CnC64AAAA4GzN4N9NSfgKEAAAAACszO26X8/X6BYAAAD0Anid8KcLAAAAAAAAAJBnwNEvAAAA9Jns1ygAAAAAAAAAAAAAAAAAAABAQ4COCENERERERERERBrnAa1sJuUVr3rsAAAAAElFTkSuQmCC';
+  var SPRITE_SHEET_SRC = 'space_invaders_sprite2.png';
   var LEFT_KEY = 37;
   var RIGHT_KEY = 39;
   var SHOOT_KEY = 88;
@@ -249,6 +249,10 @@
       this.xVel = 0;
       this.bullets = [];
       this.bulletDelayAccumulator = 0;
+    //   BEST SCORE
+      this.best = parseInt(localStorage.getItem("best")) || 0,
+      
+
       this.score = 0;
     },
     
@@ -614,6 +618,11 @@
       if (alien.bullet !== null && checkRectCollision(alien.bullet.bounds, player.bounds)) {
         if (player.lives === 0) {
           hasGameStarted = false;
+          //GAME OVER SCREEN
+          player.best = Math.max(player.score, player.best);
+          localStorage.setItem("best", player.best);
+          document.querySelector('#message').innerHTML = ""+ parseInt(localStorage.getItem("best"));
+          document.querySelector('.score').innerHTML = "Best score: "+ parseInt(localStorage.getItem("best"));
         } else {
          alien.bullet.alive = false;
          particleManager.createExplosion(player.position.x, player.position.y, 'green', 100, 8,8,6,0.001,40);
@@ -747,12 +756,12 @@
   }
   
   function onKeyDown(e) {
-    e.preventDefault();
+    // e.preventDefault();
     keyStates[e.keyCode] = true;
   }
   
   function onKeyUp(e) {
-    e.preventDefault();
+    // e.preventDefault();
     keyStates[e.keyCode] = false;
   }
   
@@ -764,4 +773,20 @@
   window.onload = function() {
     init();
     animate();
+    document.querySelector('.score').innerHTML = "Best score: "+ parseInt(localStorage.getItem("best"));
   };
+
+
+
+  //SUBMIT SCORE FORM
+document.querySelector("#show-form").addEventListener("click",function(){
+    document.querySelector(".popup").classList.add("active");
+  });
+  document.querySelector(".popup .close-btn").addEventListener("click",function(){
+    document.querySelector(".popup").classList.remove("active");
+});
+
+document.querySelector('.score').innerHTML = "Best score: "+ parseInt(localStorage.getItem("best"));
+
+//SCORE MESSAGE
+document.querySelector('#message').innerHTML = ""+ parseInt(localStorage.getItem("best"));
