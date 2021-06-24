@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="style.css">
 
     <title>Idea Invaders</title>
-    <link rel="shortcut icon" type="image/jpg" href="img/logo.png"/>
-    <link rel="icon" type="image/png" href="img/logo.png"/>
+    <link rel="shortcut icon" type="image/jpg" href="/logo.png"/>
+    <link rel="icon" type="image/png" href="/logo.png"/>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.18/jquery.touchSwipe.min.js"></script>
@@ -32,34 +32,32 @@ ontouchend="touchEnd()">
           </div>
       </div>
 
-    <div class="container">
-        <!-- FORM -->
-        <div class="center">
-            <button id="show-form">Submit score</button>
-            <h1 class="score"></h1>
-            <img src="/logo-white.png" alt="" class="logo">
-        </div>
-        <div class="popup">
-            <div class="close-btn">&times;</div>
-            <div class="form">
-                <h2>Submit score</h2>
-                <form action="https://formspree.io/f/mdoydnjz"
-                method="POST" target="_blank">
-                    <div class="form-element">
-                        <label for="email">Your e-mail</label>
-                        <input id="email" type="email" name="_replyto" placeholder="example@email.com">
-                    </div>
-                    <textarea id="message" name="message" hidden></textarea>
-                    <div class="form-element">
-                        <button type="submit">Submit</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-    
+    <div class="container">  
 
     <canvas id="game-canvas" width="640" height="640"></canvas>
+
+    <div class="center">
+        <button id="show-form">Submit score</button>
+        <h1 class="score"></h1>
+        <img src="/logo-white.png" alt="" class="logo">
+    </div>
+    <div class="popup">
+        <div class="close-btn">&times;</div>
+        <div class="form">
+            <h2>Submit score</h2>
+            <form action="https://formspree.io/f/mdoydnjz"
+            method="POST" target="_blank">
+                <div class="form-element">
+                    <label for="email">Your e-mail</label>
+                    <input id="email" type="email" name="_replyto" placeholder="example@email.com">
+                </div>
+                <textarea id="message" name="message" hidden></textarea>
+                <div class="form-element">
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 </body>
