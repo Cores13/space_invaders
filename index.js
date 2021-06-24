@@ -266,7 +266,14 @@
       var bullet = new Bullet(this.position.x, this.position.y - this.bounds.h / 2, 1, 1000);
       this.bullets.push(bullet);
     },
-    
+
+    moveLeft: function() {
+      this.xVel = -175;
+    },
+    moveRight: function() {
+      this.xVel = 175;
+    },
+
     handleInput: function() {
       if (isKeyDown(LEFT_KEY)) {
         this.xVel = -175;
@@ -317,6 +324,7 @@
         }
       }
     }
+    
   });
   
   var Bullet = BaseSprite.extend({
@@ -704,10 +712,10 @@
     fillCenteredText("Space Invaders", CANVAS_WIDTH/2, CANVAS_HEIGHT/2.75, '#FFFFFF', 36);
     fillBlinkingText("Press enter to play!", CANVAS_WIDTH/2, CANVAS_HEIGHT/2, 500, '#FFFFFF', 36);
   }
-  
+  var dt;
   function animate() {
     var now = window.performance.now();
-    var dt = now - lastTime;
+    dt = now - lastTime;
     if (dt > 100) dt = 100;
     if (wasKeyPressed(13) && !hasGameStarted) {
       initGame();
@@ -736,6 +744,58 @@
   // Event Listener functions
   //
   // ###################################################################
+
+  // if (isKeyDown(LEFT_KEY)) {
+  //   this.xVel = -175;
+  // } else if (isKeyDown(RIGHT_KEY)) {
+  //   this.xVel = 175;
+  // } else this.xVel = 0;
+  
+  // if (wasKeyPressed(SHOOT_KEY)) {
+  //   if (this.bulletDelayAccumulator > 0.5) {
+  //     this.shoot(); 
+  //     this.bulletDelayAccumulator = 0;
+  //   }
+// =========================================
+var right;
+var left;
+var startingX , startingY , movingX , movingY ;
+function touchStart(evt){
+startingX = evt.touches[0].clientX ;
+startingY = evt.touches[0].clientY ;
+}
+function touchMove(evt){
+movingX = evt.touches[0].clientX ;
+movingY = evt.touches[0].clientY ;
+}
+function touchEnd(){
+if(startingX+100 < movingX){
+  keyStates[13] = false;
+  keyStates[37] = false;
+  keyStates[39] = true;
+} else if(startingX-100 > movingX){
+  keyStates[13] = false;
+  keyStates[39] = false;
+  keyStates[37] = true;
+}
+
+if(startingY+100 < movingY){
+  keyStates[13] = false;
+  if (player.bulletDelayAccumulator > 0.5) {
+    player.shoot(); 
+    player.bulletDelayAccumulator = 0;
+  }
+} else if(startingY-100 > movingY){
+  keyStates[39] = false;
+  keyStates[37] = false;
+  keyStates[13] = true;
+                     }
+}
+
+// =========================================
+
+
+
   function resize() {
     var w = window.innerWidth;
     var h = window.innerHeight;
@@ -776,6 +836,7 @@
     document.querySelector('.score').innerHTML = "Best score: "+ parseInt(localStorage.getItem("best"));
   };
 
+  
 
 
   //SUBMIT SCORE FORM

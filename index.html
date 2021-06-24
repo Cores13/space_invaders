@@ -9,7 +9,11 @@
 
     <title>Document</title>
 </head>
-<body>
+
+<body ontouchstart="touchStart(event)"
+ontouchmove="touchMove(event)"
+ontouchend="touchEnd()">
+    <div id="view">
     <!-- FORM -->
     <div class="center">
         <button id="show-form">Submit score</button>
@@ -34,6 +38,8 @@
     </div>
 
     <canvas id="game-canvas" width="640" height="640"></canvas>
+</div>
+
 </body>
 <script src="index.js"></script>
 </html>
