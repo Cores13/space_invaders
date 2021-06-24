@@ -741,17 +741,6 @@
   //
   // ###################################################################
 
-  // if (isKeyDown(LEFT_KEY)) {
-  //   this.xVel = -175;
-  // } else if (isKeyDown(RIGHT_KEY)) {
-  //   this.xVel = 175;
-  // } else this.xVel = 0;
-  
-  // if (wasKeyPressed(SHOOT_KEY)) {
-  //   if (this.bulletDelayAccumulator > 0.5) {
-  //     this.shoot(); 
-  //     this.bulletDelayAccumulator = 0;
-  //   }
 // =========================================
 var right;
 var left;
@@ -759,6 +748,12 @@ var startingX , startingY , movingX , movingY ;
 function touchStart(evt){
 startingX = evt.touches[0].clientX ;
 startingY = evt.touches[0].clientY ;
+var fire =false;
+do{
+  player.shoot(); 
+  fire= false;
+}while(fire);
+
 }
 function touchMove(evt){
 movingX = evt.touches[0].clientX ;
@@ -775,7 +770,7 @@ if(startingX+100 < movingX){
   keyStates[37] = true;
 }
 
-if(startingY+100 < movingY){
+if(startingY == movingY || startingX == movingX ){
   keyStates[13] = false;
   if (player.bulletDelayAccumulator > 0.5) {
     player.shoot(); 

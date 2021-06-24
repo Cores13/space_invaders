@@ -186,8 +186,17 @@ canvas {
 	cursor: pointer
 }
 
-@media (max-width: 450px) {
+@media (max-width: 460px) {
     .content {
         width: 70%;
+    }
+    .center > h1 {
+        font-size: 24px !important;
+    }
+    .logo {
+        max-height: 50px;
+    }
+    .center button {
+        padding: 10px 15px;
     }
 }
