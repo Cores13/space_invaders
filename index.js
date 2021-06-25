@@ -705,7 +705,7 @@
   }
   
   function drawStartScreen() {
-    fillCenteredText("IDEA INVADERS", CANVAS_WIDTH/2, CANVAS_HEIGHT/2.75, '#FFFFFF', 36);
+    fillCenteredText("Idea SpaceDefender", CANVAS_WIDTH/2, CANVAS_HEIGHT/2.75, '#FFFFFF', 36);
     fillBlinkingText("Press enter or swipe up to play!", CANVAS_WIDTH/2, CANVAS_HEIGHT/2, 500, '#FFFFFF', 36);
   }
   var dt;
